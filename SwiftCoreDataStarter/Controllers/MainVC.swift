@@ -11,6 +11,12 @@ import UIKit
 class MainVC: UIViewController {
 
     var friendMain  = [String]()
+    var filteredFriend = [String]()
+    var isFiltered = false
+    
+    
+    
+    
     @IBOutlet var emptyView: UIView!
     @IBOutlet weak var friendsCollectionView: UICollectionView!
     
@@ -38,20 +44,45 @@ class MainVC: UIViewController {
 
 extension MainVC: UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(friendMain.count == 0){
+        
+        let countFriends = isFiltered ? filteredFriend.count : friendMain.count
+        if(countFriends == 0){
             friendsCollectionView.backgroundView = emptyView
         }
         else{
             friendsCollectionView.backgroundView = nil
         }
-        return friendMain.count
+        return countFriends
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCellId", for: indexPath) as? FriendCell else{ return UICollectionViewCell()}
-        cell.configureCell(name: friendMain[indexPath.row])
+        let friendName = isFiltered ? filteredFriend[indexPath.row] : friendMain[indexPath.row]
+        cell.configureCell(name: friendName)
         return cell
     }
+}
+
+
+extension MainVC: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let queryName = searchBar.text else{return}
+        filteredFriend = friendMain.filter { (txt) -> Bool in
+            return txt.contains(queryName)
+        }
+        isFiltered = true
+       
+        searchBar.resignFirstResponder()
+        friendsCollectionView.reloadData()
+       
+    }
     
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("cancellll")
+        isFiltered = false
+        filteredFriend.removeAll()
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+        friendsCollectionView.reloadData()
+    }
 }

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CAN-ff-oAG">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gkh-3R-OKA">
                                     <size key="itemSize" width="148" height="161"/>
@@ -69,12 +69,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="icq-Hl-Fc3"/>
                                 </connections>
                             </collectionView>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-3P-nlL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="SF4-1u-aRp"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="CAN-ff-oAG" firstAttribute="top" secondItem="2F8-3P-nlL" secondAttribute="bottom" id="4do-wj-Bb6"/>
+                            <constraint firstItem="2F8-3P-nlL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="55e-ej-vuf"/>
+                            <constraint firstItem="2F8-3P-nlL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M7n-on-dAE"/>
                             <constraint firstItem="CAN-ff-oAG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Nrl-1K-YlV"/>
+                            <constraint firstItem="2F8-3P-nlL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kFI-Hh-S54"/>
                             <constraint firstItem="CAN-ff-oAG" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="tdi-jv-C8t"/>
-                            <constraint firstItem="CAN-ff-oAG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uVO-XQ-Vsp"/>
                             <constraint firstItem="CAN-ff-oAG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vr0-7B-h51"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
