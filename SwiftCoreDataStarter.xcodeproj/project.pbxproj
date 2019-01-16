@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA089EEC21EF475200E6A690 /* FriendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA089EEA21EF475200E6A690 /* FriendModel.xcdatamodeld */; };
+		FA089EEF21EF481D00E6A690 /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA089EED21EF481D00E6A690 /* Friend+CoreDataClass.swift */; };
+		FA089EF421EF555700E6A690 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA089EF321EF555700E6A690 /* Friend+CoreDataProperties.swift */; };
 		FA43863B21EE4A4600CBFDF6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43863A21EE4A4600CBFDF6 /* FriendCell.swift */; };
 		FA43863E21EE4C9C00CBFDF6 /* FriendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43863D21EE4C9C00CBFDF6 /* FriendData.swift */; };
 		FA83C32C21EDEC0200940884 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83C32B21EDEC0200940884 /* AppDelegate.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA089EEB21EF475200E6A690 /* FriendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendModel.xcdatamodel; sourceTree = "<group>"; };
+		FA089EED21EF481D00E6A690 /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA089EF321EF555700E6A690 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FA43863A21EE4A4600CBFDF6 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		FA43863D21EE4C9C00CBFDF6 /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendData.swift; sourceTree = "<group>"; };
 		FA83C32821EDEC0200940884 /* SwiftCoreDataStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCoreDataStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA089EE921EF473500E6A690 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA089EEA21EF475200E6A690 /* FriendModel.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		FA43863721EE4A0E00CBFDF6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +96,9 @@
 		FA83C32A21EDEC0200940884 /* SwiftCoreDataStarter */ = {
 			isa = PBXGroup;
 			children = (
+				FA089EF321EF555700E6A690 /* Friend+CoreDataProperties.swift */,
+				FA089EED21EF481D00E6A690 /* Friend+CoreDataClass.swift */,
+				FA089EE921EF473500E6A690 /* Resources */,
 				FA43863F21EE527900CBFDF6 /* Controllers */,
 				FA43863C21EE4C7B00CBFDF6 /* Data */,
 				FA43863721EE4A0E00CBFDF6 /* Cells */,
@@ -166,9 +183,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA83C32E21EDEC0200940884 /* MainVC.swift in Sources */,
+				FA089EEF21EF481D00E6A690 /* Friend+CoreDataClass.swift in Sources */,
 				FA43863E21EE4C9C00CBFDF6 /* FriendData.swift in Sources */,
 				FA43863B21EE4A4600CBFDF6 /* FriendCell.swift in Sources */,
 				FA83C32C21EDEC0200940884 /* AppDelegate.swift in Sources */,
+				FA089EEC21EF475200E6A690 /* FriendModel.xcdatamodeld in Sources */,
+				FA089EF421EF555700E6A690 /* Friend+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +388,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA089EEA21EF475200E6A690 /* FriendModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA089EEB21EF475200E6A690 /* FriendModel.xcdatamodel */,
+			);
+			currentVersion = FA089EEB21EF475200E6A690 /* FriendModel.xcdatamodel */;
+			path = FriendModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA83C32021EDEC0200940884 /* Project object */;
 }

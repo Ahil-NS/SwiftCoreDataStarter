@@ -42,7 +42,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4V-BD-usw">
-                                                    <rect key="frame" x="16" y="128" width="116" height="21"/>
+                                                    <rect key="frame" x="16" y="128" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQq-6c-90u">
+                                                    <rect key="frame" x="90" y="128" width="42" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -54,13 +60,17 @@
                                             <constraint firstItem="hbz-s0-svK" firstAttribute="leading" secondItem="Gfh-uD-3aL" secondAttribute="leading" constant="4" id="4yT-9u-xHM"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="D4V-BD-usw" secondAttribute="bottom" constant="4" id="50N-JK-yN7"/>
                                             <constraint firstItem="D4V-BD-usw" firstAttribute="top" secondItem="hbz-s0-svK" secondAttribute="bottom" constant="8" id="B1M-LJ-pUq"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="D4V-BD-usw" secondAttribute="trailing" constant="8" id="Kfh-s7-VLq"/>
+                                            <constraint firstItem="dQq-6c-90u" firstAttribute="leading" secondItem="D4V-BD-usw" secondAttribute="trailing" constant="32" id="Pfn-1V-o4P"/>
                                             <constraint firstItem="hbz-s0-svK" firstAttribute="top" secondItem="Gfh-uD-3aL" secondAttribute="top" constant="8" id="Qn4-lf-oBq"/>
                                             <constraint firstItem="D4V-BD-usw" firstAttribute="leading" secondItem="Gfh-uD-3aL" secondAttribute="leadingMargin" constant="8" id="WTu-Vd-NyK"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="dQq-6c-90u" secondAttribute="bottom" constant="2" id="ozs-GM-L2H"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="dQq-6c-90u" secondAttribute="trailing" constant="8" id="wqU-bQ-tSc"/>
+                                            <constraint firstItem="dQq-6c-90u" firstAttribute="top" secondItem="hbz-s0-svK" secondAttribute="bottom" constant="8" id="xw6-aN-w88"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="friendImageView" destination="hbz-s0-svK" id="1X5-rx-uSo"/>
                                             <outlet property="nameLabel" destination="D4V-BD-usw" id="jiI-Zj-wSV"/>
+                                            <outlet property="phoneLabel" destination="dQq-6c-90u" id="4Aj-hm-AoY"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -12,10 +12,12 @@ class FriendCell: UICollectionViewCell {
     
     @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
     
-    func configureCell(name: String){
+    func configureCell(name: String,phone: String?){
         friendImageView.image = UIImage(named: "addImg")
         nameLabel.text = name
+        phoneLabel.text = phone
     }
     
 }
