@@ -12,8 +12,6 @@ import CoreData
 class MainVC: UIViewController {
     
     private var friendMain  = [Friend]()
-    
-    
     //    private var filteredFriend = [Friend]()
     //    private var isFiltered = false
     
@@ -22,10 +20,11 @@ class MainVC: UIViewController {
     
     private var selectedIndexPath: IndexPath!
     private var imagePicker = UIImagePickerController()
-    
+    private var query = ""
     
     @IBOutlet var emptyView: UIView!
     @IBOutlet weak var friendsCollectionView: UICollectionView!
+    
     
     
     
@@ -78,6 +77,9 @@ class MainVC: UIViewController {
     private func refresh(){
         let request = Friend.fetchRequest() as NSFetchRequest<Friend>
         
+        if !query.isEmpty{
+            request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", query)
+        }
        // let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
         
         //case insensitive sort
@@ -127,26 +129,23 @@ extension MainVC: UICollectionViewDataSource,UICollectionViewDelegate{
 extension MainVC: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let queryName = searchBar.text else{return}
-        
+        query = queryName
+        refresh()
         //Filter directly from Coredata
-        let request = Friend.fetchRequest() as NSFetchRequest<Friend>
-        
-       
-        
-        
+        //let request = Friend.fetchRequest() as NSFetchRequest<Friend>
         
         //cd used for avoid case sensitive search
-        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", queryName)
-        
-        let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
-        request.sortDescriptors = [sort]
-        
-        do{
-            friendMain = try context.fetch(request)
-        }
-        catch let error as NSError{
-            print("Could not fetch , \(error) \(error.userInfo)")
-        }
+//        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", queryName)
+//
+//        let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
+//        request.sortDescriptors = [sort]
+//
+//        do{
+//            friendMain = try context.fetch(request)
+//        }
+//        catch let error as NSError{
+//            print("Could not fetch , \(error) \(error.userInfo)")
+//        }
         //Filter from [Friend]()
         //        filteredFriend = friendMain.filter({ (friend) -> Bool in
         //            return friend.name!.contains(queryName)
@@ -165,6 +164,7 @@ extension MainVC: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        query = ""
         refresh()
         //        isFiltered = false
         //        filteredFriend.removeAll()
