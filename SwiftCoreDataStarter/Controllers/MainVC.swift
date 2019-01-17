@@ -55,9 +55,13 @@ class MainVC: UIViewController {
         
         appDelegate.saveContext()
         
-        friendMain.append(friend)
-        let index = IndexPath(item: friendMain.count - 1, section: 0)
-        friendsCollectionView.insertItems(at: [index])
+        //sort and add data to collectionview
+        refresh()
+        friendsCollectionView.reloadData()
+        
+        //friendMain.append(friend)
+//        let index = IndexPath(item: friendMain.count - 1, section: 0)
+//        friendsCollectionView.insertItems(at: [index])
         
         //with out core data
         //        var friend = FriendData()
@@ -72,8 +76,16 @@ class MainVC: UIViewController {
     }
     
     private func refresh(){
+        let request = Friend.fetchRequest() as NSFetchRequest<Friend>
+        
+       // let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
+        
+        //case insensitive sort
+        let sort = NSSortDescriptor(key: #keyPath(Friend.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        request.sortDescriptors = [sort]
+        
         do{
-            friendMain = try context.fetch(Friend.fetchRequest())
+            friendMain = try context.fetch(request)
         }catch let error as NSError{
             print("Could not fetch \(error), \(error.userInfo)")
         }
@@ -118,8 +130,17 @@ extension MainVC: UISearchBarDelegate{
         
         //Filter directly from Coredata
         let request = Friend.fetchRequest() as NSFetchRequest<Friend>
+        
+       
+        
+        
+        
         //cd used for avoid case sensitive search
         request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", queryName)
+        
+        let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
+        request.sortDescriptors = [sort]
+        
         do{
             friendMain = try context.fetch(request)
         }
