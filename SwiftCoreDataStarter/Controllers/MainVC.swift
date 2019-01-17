@@ -16,8 +16,8 @@ class MainVC: UIViewController {
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
-    
+    private var selectedIndexPath: IndexPath!
+    private var imagePicker = UIImagePickerController()
     
     
     @IBOutlet var emptyView: UIView!
@@ -28,6 +28,8 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        imagePicker.delegate = self
+        
         
     }
     
@@ -50,8 +52,11 @@ class MainVC: UIViewController {
         let friend = Friend(entity: Friend.entity(), insertInto: context)
         friend.name = data.name
         friend.phone = data.phoneNum
+        friend.dob = data.dob as NSDate
+        friend.eyeColor = data.eyeColor
         
         appDelegate.saveContext()
+        
         friendMain.append(friend)
         let index = IndexPath(item: friendMain.count - 1, section: 0)
         friendsCollectionView.insertItems(at: [index])
@@ -86,8 +91,15 @@ extension MainVC: UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCellId", for: indexPath) as? FriendCell else{ return UICollectionViewCell()}
         let friend = isFiltered ? filteredFriend[indexPath.row] : friendMain[indexPath.row]
-        cell.configureCell(name: friend.name!, phone: friend.phone)
+        cell.configureCell(name: friend.name!, phone: friend.phone, age: friend.age, color: friend.eyeColor as? UIColor, image: friend.photo)
+
+       
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
@@ -117,4 +129,20 @@ extension MainVC: UISearchBarDelegate{
         searchBar.resignFirstResponder()
         friendsCollectionView.reloadData()
     }
+}
+
+extension MainVC: UIImagePickerControllerDelegate ,UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            let friends = isFiltered ? filteredFriend[selectedIndexPath.row] : friendMain[selectedIndexPath.row]
+            friends.photo = pickedImage.pngData() as NSData?
+            appDelegate.saveContext()
+            
+            friendsCollectionView.reloadItems(at: [selectedIndexPath])
+            picker.dismiss(animated: true, completion: nil)
+
+        }
+    }
+    
 }
